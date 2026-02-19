@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 class ValueIteration:
     def __init__ (self, env):
@@ -57,3 +59,38 @@ class ValueIteration:
             self.V = v_new
             # if delta < self.theta:
             #     break
+
+    def plot_gridworld(values, policy, title="RL Gridworld Results"):
+        rows, cols = values.shape
+        fig, ax = plt.subplots(figsize=(8, 8))
+        
+        # Create the basic grid lines
+        ax.set_xticks(range(cols + 1))
+        ax.set_yticks(range(rows + 1))
+        ax.grid(True, color='black', linewidth=2)
+        
+        # Remove axis labels and ticks for a cleaner look
+        ax.set_xticklabels([])
+        ax.set_yticklabels([])
+        
+        for r in range(rows):
+            for c in range(cols):
+                # Display Value (top-center of cell)
+                val_text = f"{values[r, c]:.2f}"
+                ax.text(c + 0.5, rows - r - 0.3, val_text, 
+                        va='center', ha='center', fontsize=12)
+                
+                # Display Policy/Symbol (bottom-center of cell)
+                symbol = policy[r, c]
+                # Color coding symbols for better visibility without background colors
+                color = 'red' if symbol in ['*', '■'] else 'blue'
+                ax.text(c + 0.5, rows - r - 0.7, symbol, 
+                        va='center', ha='center', fontsize=22, 
+                        fontweight='bold', color=color)
+
+        plt.title(title, pad=20, fontsize=15)
+        
+        # Adjust limits to show the full grid
+        ax.set_xlim(0, cols)
+        ax.set_ylim(0, rows)
+        plt.show()
