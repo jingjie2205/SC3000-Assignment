@@ -8,6 +8,7 @@ with open("./data/Coord.json", "r") as f:
 source_node = "50"
 x_goal, y_goal = coords[source_node]
 
+# heuristic function from all nodes to source nodes (node #50)
 heuristic = {}
 
 for node, (x, y) in coords.items():
