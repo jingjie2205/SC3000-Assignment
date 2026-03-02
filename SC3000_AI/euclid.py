@@ -18,5 +18,5 @@ for node, (x, y) in coords.items():
     heuristic[node] = distance
 
 # Save to new JSON file
-with open("heuristic.json", "w") as f:
+with open("./data/heuristic.json", "w") as f:
     json.dump(heuristic, f, indent=4)
