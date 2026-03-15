@@ -1,8 +1,14 @@
 import json
 import math
+from pathlib import Path
+
+base_path = Path(__file__).resolve().parent
+
+coord_path = base_path.parent / "data" / "Coord.json"
+heuristic_path = base_path.parent / "data" / "heuristic.json"
 
 # Load coordinates
-with open("./data/Coord.json", "r") as f:
+with open(coord_path, "r") as f:
     coords = json.load(f)
 
 source_node = "50"
@@ -15,9 +21,9 @@ for node, (x, y) in coords.items():
     dx = x - x_goal
     dy = y - y_goal
     distance = math.sqrt(dx**2 + dy**2)
-    
+
     heuristic[node] = distance
 
-# Save to new JSON file
-with open("heuristic.json", "w") as f:
+# Save
+with open(heuristic_path, "w") as f:
     json.dump(heuristic, f, indent=4)
