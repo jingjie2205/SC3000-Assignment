@@ -17,14 +17,20 @@ successor(X) :- parent(queen_elizabeth, X).
 
 % Male has priority for succession
 better(X, Y) :-
+    successor(X),
+    successor(Y),
     male(X), female(Y).
 
 % Comparing 2 males, the older has priority for succession
 better(X, Y) :-
+    successor(X),
+    successor(Y),
     male(X), male(Y),
     older(X, Y).
 
 % Comparing 2 females, the older has priority for succession
 better(X, Y) :-
+    successor(X),
+    successor(Y),
     female(X), female(Y),
     older(X, Y).

@@ -19,4 +19,6 @@ successor(X) :-
 
 % Older child has priority for succession
 better(X, Y) :-
+    successor(X),
+    successor(Y),
     older(X, Y).
