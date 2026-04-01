@@ -1,26 +1,9 @@
-company(sumsum).
-company(appy).
+competitor(sumsum, appy).
+developed(sumsum, galactica_s3).
+stolen(stevey, galactica_s3).
+boss(stevey, appy).
 
-competitor_of(sumsum,appy).
-competitor_of(X,Y):-
-    competitor_of(Y,X).
-
-boss_of(stevey,appy).
-
-business(X):-
-    smart_phone_technology(X).
-
-smart_phone_technology(galactica-s3).
-
-steal(stevey,galactica-s3,sumsum).
-
-rival(X,Y):-
-    company(X),
-    company(Y),
-    competitor_of(X,Y).
-
-unethical(Boss):-
-    steal(Boss,Business,Other),
-    boss_of(Boss,Company),
-    rival(Company,Other),
-    business(Business).
+unethical(X) :- boss(X, Company), 
+                competitor(Competitor, Company), 
+                developed(Competitor, Technology), 
+                stolen(X, Technology).
