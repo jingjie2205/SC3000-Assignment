@@ -12,9 +12,11 @@ male(prince_andrew).
 male(prince_edward).
 female(princess_ann).
 
-successor(X) :- male(X), parent(queen_elizabeth, X).
-successor(X) :- male(X), parent(Y, X), successor(Y), older(Y, Z),
-                parent(Z, Y).
-successor(X) :- female(X), parent(queen_elizabeth, X).
-successor(X) :- female(X), parent(Y, X), successor(Y), older(Y, Z),
-                parent(Z, Y).
+
+% All children are successors (no gender consideration)
+successor(X) :-
+    parent(queen_elizabeth, X).
+
+% Older child has priority for succession
+better(X, Y) :-
+    older(X, Y).
